@@ -1,0 +1,18 @@
+{
+    "name": "OmniBit",
+    "version": "0.0.0",
+    "description": "Extension for YahBoom SuperBit V1.0.0\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bOmni\u001b[3~\u001b[C\u001b[C\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001biBit\u001b[C\u001b[D\u001b[3~\u001b[C\u001b[C\u001b[C\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001b V1.0.0",
+    "dependencies": {
+        "core": "*",
+        "radio": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": false,
+    "license": "MIT"
+}
