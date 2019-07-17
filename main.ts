@@ -42,7 +42,7 @@ namespace OmniBit {
     let initialized = false
     let yahStrip: neopixel.Strip;
 
-   
+
     export enum enMusic {
 
         dadadum = 0,
@@ -67,14 +67,14 @@ namespace OmniBit {
         power_up,
         power_down
     }
-    
 
-    
+
+
     export enum enSteppers {
         B1 = 0x1,
         B2 = 0x2
     }
-    export enum enPos { 
+    export enum enPos {
         //% blockId="forward" block="forward"
         forward = 1,
         //% blockId="reverse" block="reverse"
@@ -99,9 +99,9 @@ namespace OmniBit {
         //% blockId="T5B0" block="5"
         T5B0 = 1800
     }
-    
+
     export enum enServo {
-        
+
         S1 = 0,
         S2,
         S3,
@@ -116,6 +116,44 @@ namespace OmniBit {
         M2 = 10,
         M3 = 12,
         M4 = 14
+    }
+
+    export enum enCarRun {
+        //% blockId="Forward" block="Forward"
+        Forward = 10,
+        //% blockId="Back" block="Back"
+        Back,
+        //% blockId="MoveLeft" block="MoveLeft"
+        MoveLeft,
+        //% blockId="MoveRight" block="MoveRight"
+        MoveRight,
+        //% blockId="Spin_Left" block="Spin_Left"
+        Spin_Left,
+        //% blockId="Spin_Right" block="Spin_Right"
+        Spin_Right,
+        //% blockId="Left_Front" block="Left_Front"
+        Left_Front,
+        //% blockId="Right_Front" block="Right_Front"
+        Right_Front,
+        //% blockId="Left_Back" block="Left_Back"
+        Left_Back,
+        //% blockId="Right_Back" block="Right_Back"
+        Right_Back,
+        //% blockId="CarStop" block="CarStop"
+        CarStop
+    }
+
+    export enum enCarDrift {
+        Back_Left = 20,
+        Back_Right,
+        Front_Left,
+        Front_Right,
+
+    }
+
+    export enum enWideAngleDrift {
+        Left,
+        Right
     }
 
     function i2cwrite(addr: number, reg: number, value: number) {
@@ -174,56 +212,318 @@ namespace OmniBit {
         pins.i2cWriteBuffer(PCA9685_ADD, buf);
     }
 
-    function setStepper(index: number, dir: boolean): void {
-        if (index == enSteppers.B1) {
-            if (dir) {
-                setPwm(11, STP_CHA_L, STP_CHA_H);
-                setPwm(9, STP_CHB_L, STP_CHB_H);
-                setPwm(10, STP_CHC_L, STP_CHC_H);
-                setPwm(8, STP_CHD_L, STP_CHD_H);
-            } else {
-                setPwm(8, STP_CHA_L, STP_CHA_H);
-                setPwm(10, STP_CHB_L, STP_CHB_H);
-                setPwm(9, STP_CHC_L, STP_CHC_H);
-                setPwm(11, STP_CHD_L, STP_CHD_H);
-            }
-        } else {
-            if (dir) {
-                setPwm(12, STP_CHA_L, STP_CHA_H);
-                setPwm(14, STP_CHB_L, STP_CHB_H);
-                setPwm(13, STP_CHC_L, STP_CHC_H);
-                setPwm(15, STP_CHD_L, STP_CHD_H);
-            } else {
-                setPwm(15, STP_CHA_L, STP_CHA_H);
-                setPwm(13, STP_CHB_L, STP_CHB_H);
-                setPwm(14, STP_CHC_L, STP_CHC_H);
-                setPwm(12, STP_CHD_L, STP_CHD_H);
-            }
-        }
-    }
-
     function stopMotor(index: number) {
         setPwm(index, 0, 0);
         setPwm(index + 1, 0, 0);
     }
-    /**
-     * *****************************************************************
-     * @param index
-     */   
+
+
+    function forward(speed: number) {
+        setPwm(10, 0, speed);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, speed);
+        setPwm(9, 0, 0);
+
+        setPwm(13, 0, speed);
+        setPwm(12, 0, 0);
+        setPwm(15, 0, speed);
+        setPwm(14, 0, 0);
+    }
+
+    function back(speed: number) {
+        setPwm(10, 0, 0);
+        setPwm(11, 0, speed);
+        setPwm(8, 0, 0);
+        setPwm(9, 0, speed);
+
+        setPwm(13, 0, 0);
+        setPwm(12, 0, speed);
+        setPwm(15, 0, 0);
+        setPwm(14, 0, speed);
+    }
+
+    function moveLeft(speed: number) {
+        setPwm(10, 0, speed);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, 0);
+        setPwm(9, 0, speed);
+
+        setPwm(13, 0, 0);
+        setPwm(12, 0, speed);
+        setPwm(15, 0, speed);
+        setPwm(14, 0, 0);
+    }
+
+    function moveRight(speed: number) {
+        setPwm(10, 0, 0);
+        setPwm(11, 0, speed);
+        setPwm(8, 0, speed);
+        setPwm(9, 0, 0);
+
+        setPwm(13, 0, speed);
+        setPwm(12, 0, 0);
+        setPwm(15, 0, 0);
+        setPwm(14, 0, speed);
+    }
+
+    function left_Front(speed: number) {
+        setPwm(10, 0, speed);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, 0);
+        setPwm(9, 0, 0);
+
+        setPwm(13, 0, 0);
+        setPwm(12, 0, 0);
+        setPwm(15, 0, speed);
+        setPwm(14, 0, 0);
+    }
+
+    function left_Back(speed: number) {
+        setPwm(10, 0, 0);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, 0);
+        setPwm(9, 0, speed);
+
+        setPwm(13, 0, 0);
+        setPwm(12, 0, speed);
+        setPwm(15, 0, 0);
+        setPwm(14, 0, 0);
+    }
+
+    function right_Front(speed: number) {
+        setPwm(10, 0, 0);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, speed);
+        setPwm(9, 0, 0);
+
+        setPwm(13, 0, speed);
+        setPwm(12, 0, 0);
+        setPwm(15, 0, 0);
+        setPwm(14, 0, 0);
+    }
+
+    function right_Back(speed: number) {
+        setPwm(10, 0, speed);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, 0);
+        setPwm(9, 0, 0);
+
+        setPwm(13, 0, 0);
+        setPwm(12, 0, 0);
+        setPwm(15, 0, 0);
+        setPwm(14, 0, speed);
+    }
+
+    function spin_Left(speed: number) {
+        setPwm(10, 0, speed);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, speed);
+        setPwm(9, 0, 0);
+
+        setPwm(13, 0, 0);
+        setPwm(12, 0, speed);
+        setPwm(15, 0, 0);
+        setPwm(14, 0, speed);
+    }
+
+    function spin_Right(speed: number) {
+        setPwm(10, 0, 0);
+        setPwm(11, 0, speed);
+        setPwm(8, 0, 0);
+        setPwm(9, 0, speed);
+
+        setPwm(13, 0, speed);
+        setPwm(12, 0, 0);
+        setPwm(15, 0, speed);
+        setPwm(14, 0, 0);
+    }
+
+
+
+    //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
+    //% weight=102
+    //% blockGap=10
+    //% speed.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarRun(direction: enCarRun, speed: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4096
+        if (speed >= 4096) {
+            speed = 4095;
+        } else if (speed < 0) {
+            speed = 0;
+        }
+        switch (direction) {
+            case enCarRun.Forward:
+                forward(speed);
+                break;
+            case enCarRun.Back:
+                back(speed);
+                break;
+            case enCarRun.MoveLeft:
+                moveLeft(speed);
+                break;
+            case enCarRun.MoveRight:
+                moveRight(speed);
+                break;
+            case enCarRun.Spin_Left:
+                spin_Left(speed);
+                break;
+            case enCarRun.Spin_Right:
+                spin_Right(speed);
+                break;
+            case enCarRun.Left_Front:
+                left_Front(speed);
+                break;
+            case enCarRun.Left_Back:
+                left_Back(speed);
+                break;
+            case enCarRun.Right_Front:
+                right_Front(speed);
+                break;
+            case enCarRun.Right_Back:
+                right_Back(speed);
+                break;
+            case enCarRun.CarStop:
+                MotorStopAll();
+                break;
+            default:
+                break;
+        }
+    }
+
+    //% blockId=OmniBit_CarDrift block="CarDrift|%direction|speed %speed"
+    //% weight=101
+    //% blockGap=10
+    //% speed.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarDrift(direction: enCarDrift, speed: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        speed = Math.map(speed, 0, 255, 0, 4095);
+        if (speed >= 4095) {
+            speed = 4095;
+        } else if (speed < 0) {
+            speed = 0;
+        }
+        switch (direction) {
+            case enCarDrift.Back_Left:
+                setPwm(10, 0, 0);
+                setPwm(11, 0, 0);
+                setPwm(8, 0, 0);
+                setPwm(9, 0, speed);
+
+                setPwm(13, 0, 0);
+                setPwm(12, 0, 0);
+                setPwm(15, 0, speed);
+                setPwm(14, 0, 0);
+                break;
+            case enCarDrift.Back_Right:
+                setPwm(10, 0, 0);
+                setPwm(11, 0, 0);
+                setPwm(8, 0, speed);
+                setPwm(9, 0, 0);
+
+                setPwm(13, 0, 0);
+                setPwm(12, 0, 0);
+                setPwm(15, 0, 0);
+                setPwm(14, 0, speed);
+                break;
+            case enCarDrift.Front_Left:
+                setPwm(10, 0, speed);
+                setPwm(11, 0, 0);
+                setPwm(8, 0, 0);
+                setPwm(9, 0, 0);
+
+                setPwm(13, 0, 0);
+                setPwm(12, 0, speed);
+                setPwm(15, 0, 0);
+                setPwm(14, 0, 0);
+                break;
+            case enCarDrift.Front_Right:
+                setPwm(10, 0, 0);
+                setPwm(11, 0, speed);
+                setPwm(8, 0, 0);
+                setPwm(9, 0, 0);
+
+                setPwm(13, 0, speed);
+                setPwm(12, 0, 0);
+                setPwm(15, 0, 0);
+                setPwm(14, 0, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
+    //% weight=100
+    //% blockGap=10
+    //% speed_front.min=0 speed.max=150
+    //% speed_back.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        speed_front = Math.map(speed_front, 0, 150, 0, 2400);
+        speed_back = Math.map(speed_back, 0, 255, 0, 4095);
+        if (speed_front >= 2400) {
+            speed_front = 2400;
+        } else if (speed_front < 0) {
+            speed_front = 0;
+        }
+        if (speed_back >= 4095) {
+            speed_back = 4095;
+        } else if (speed_back < 0) {
+            speed_back = 0;
+        }
+
+        switch (direction) {
+            case enWideAngleDrift.Left:
+                setPwm(10, 0, speed_front);
+                setPwm(11, 0, 0);
+                setPwm(8, 0, 0);
+                setPwm(9, 0, speed_back);
+
+                setPwm(13, 0, 0);
+                setPwm(12, 0, speed_front);
+                setPwm(15, 0, speed_back);
+                setPwm(14, 0, 0);
+                break;
+            case enWideAngleDrift.Right:
+                setPwm(10, 0, 0);
+                setPwm(11, 0, speed_front);
+                setPwm(8, 0, speed_back);
+                setPwm(9, 0, 0);
+
+                setPwm(13, 0, speed_front);
+                setPwm(12, 0, 0);
+                setPwm(15, 0, 0);
+                setPwm(14, 0, speed_back);
+                break;
+            default:
+                break;
+        }
+
+    }
+
     //% blockId=OmniBit_RGB_Program block="RGB_Program"
-    //% weight=99
+    //% weight=97
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RGB_Program(): neopixel.Strip {
-         
         if (!yahStrip) {
             yahStrip = neopixel.create(DigitalPin.P12, 4, NeoPixelMode.RGB);
         }
-        return yahStrip;  
-    } 
-    
+        return yahStrip;
+    }
+
     //% blockId=OmniBit_Music block="Music|%index"
-    //% weight=98
+    //% weight=96
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Music(index: enMusic): void {
@@ -250,10 +550,11 @@ namespace OmniBit {
             case enMusic.power_down: music.beginMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once); break;
         }
     }
-    
+
     //% blockId=OmniBit_Servo block="Servo(180°)|num %num|value %value"
-    //% weight=97
+    //% weight=95
     //% blockGap=10
+    //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
     export function Servo(num: enServo, value: number): void {
@@ -266,8 +567,9 @@ namespace OmniBit {
     }
 
     //% blockId=OmniBit_Servo2 block="Servo(270°)|num %num|value %value"
-    //% weight=96
+    //% weight=94
     //% blockGap=10
+    //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=270
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
     export function Servo2(num: enServo, value: number): void {
@@ -281,33 +583,34 @@ namespace OmniBit {
     }
 
     //% blockId=OmniBit_Servo3 block="Servo(360°)|num %num|pos %pos|value %value"
-    //% weight=96
+    //% weight=93
     //% blockGap=10
+    //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=90
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
     export function Servo3(num: enServo, pos: enPos, value: number): void {
 
         // 50hz: 20,000 us
-        
+
         if (pos == enPos.stop) {
             let us = (86 * 1800 / 180 + 600); // 0.6 ~ 2.4
             let pwm = us * 4096 / 20000;
             setPwm(num, 0, pwm);
         }
-        else if(pos == enPos.forward){ //0-90 -> 90 - 0
-            let us = ((90-value) * 1800 / 180 + 600); // 0.6 ~ 2.4
+        else if (pos == enPos.forward) { //0-90 -> 90 - 0
+            let us = ((90 - value) * 1800 / 180 + 600); // 0.6 ~ 2.4
             let pwm = us * 4096 / 20000;
             setPwm(num, 0, pwm);
         }
-        else if(pos == enPos.reverse){ //0-90 -> 90 -180
-            let us = ((90+value) * 1800 / 180 + 600); // 0.6 ~ 2.4
+        else if (pos == enPos.reverse) { //0-90 -> 90 -180
+            let us = ((90 + value) * 1800 / 180 + 600); // 0.6 ~ 2.4
             let pwm = us * 4096 / 20000;
             setPwm(num, 0, pwm);
         }
     }
-    
+
     //% blockId=OmniBit_MotorRun block="Motor|%index|speed(-255~255) %speed"
-    //% weight=93
+    //% weight=92
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: enMotors, speed: number): void {
@@ -324,9 +627,8 @@ namespace OmniBit {
 
         let a = index
         let b = index + 1
-        
-        if (a > 10)
-        {
+
+        if (a > 10) {
             if (speed >= 0) {
                 setPwm(a, 0, speed)
                 setPwm(b, 0, 0)
@@ -335,7 +637,7 @@ namespace OmniBit {
                 setPwm(b, 0, -speed)
             }
         }
-        else { 
+        else {
             if (speed >= 0) {
                 setPwm(b, 0, speed)
                 setPwm(a, 0, 0)
@@ -344,11 +646,8 @@ namespace OmniBit {
                 setPwm(a, 0, -speed)
             }
         }
-        
     }
-    
-  
-    
+
 
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
@@ -357,14 +656,9 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685()
         }
-        
         stopMotor(enMotors.M1);
         stopMotor(enMotors.M2);
         stopMotor(enMotors.M3);
         stopMotor(enMotors.M4);
-        
     }
-
-   
-    
 }
