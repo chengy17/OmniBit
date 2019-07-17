@@ -304,10 +304,8 @@ namespace OmniBit {
             let pwm = us * 4096 / 20000;
             setPwm(num, 0, pwm);
         }
-
-       
-
     }
+    
     //% blockId=OmniBit_MotorRun block="Motor|%index|speed(-255~255) %speed"
     //% weight=93
     //% speed.min=-255 speed.max=255
@@ -349,28 +347,8 @@ namespace OmniBit {
         
     }
     
-    //% blockId=OmniBit_MotorRunDual block="Motor|%motor1|speed %speed1|%motor2|speed %speed2"
-    //% weight=92
-    //% blockGap=50
-    //% speed1.min=-255 speed1.max=255
-    //% speed2.min=-255 speed2.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=2
-    export function MotorRunDual(motor1: enMotors, speed1: number, motor2: enMotors, speed2: number): void {
-        MotorRun(motor1, speed1);
-        MotorRun(motor2, speed2);
-    }
-
-    //% blockId=OmniBit_StepperDegree block="Stepper Motor(28BYJ-48) |%index|degree %degree"
-    //% weight=90
-    export function StepperDegree(index: enSteppers, degree: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        setStepper(index, degree > 0);
-        degree = Math.abs(degree);
-        basic.pause(10240 * degree / 360);
-        MotorStopAll()
-    }
+  
+    
 
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
@@ -387,41 +365,6 @@ namespace OmniBit {
         
     }
 
-    //% blockId=OmniBit_StepperTurn block="Stepper Motor(28BYJ-48) |%index|turn %turn|circle"
-    //% weight=89
-    export function StepperTurn(index: enSteppers, turn: enTurns): void {
-        let degree = turn;
-        StepperDegree(index, degree);
-    }
-
-    //% blockId=OmniBit_StepperDual block="Dual Stepper Motor(Degree) |M1 %degree1| M2 %degree2"
-    //% weight=88
-    export function StepperDual(degree1: number, degree2: number): void {
-        if (!initialized) {
-            initPCA9685()
-        }
-        setStepper(1, degree1 > 0);
-        setStepper(2, degree2 > 0);
-        degree1 = Math.abs(degree1);
-        degree2 = Math.abs(degree2);
-        basic.pause(10240 * Math.min(degree1, degree2) / 360);
-        if (degree1 > degree2) {
-            stopMotor(enMotors.M3);
-            stopMotor(enMotors.M4);
-            basic.pause(10240 * (degree1 - degree2) / 360);
-        } else {
-            stopMotor(enMotors.M1);
-            stopMotor(enMotors.M2);
-            basic.pause(10240 * (degree2 - degree1) / 360);
-        }
-
-        MotorStopAll()
-    }
-
-    //% blockId=OmniBit_PWMOFF block="PWM OFF|%index"
-    //% weight=87
-    export function PWMOFF(index: number): void {
-        setPwm(index, 0, 0);
-    }
-
+   
+    
 }
