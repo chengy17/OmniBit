@@ -1,6 +1,6 @@
 # OmniBit
 
-Extension for YahBoom SuperBit V1.0.0[D[D[D[D[D[D[D[DOmni[3~[C[C[[C[C[C[CiBit[C[D[3~[C[C[C[[C[C[C[C V1.0.0
+Extension for YahBoom OmniBit V1.0.0
 
 ## TODO
 

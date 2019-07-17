@@ -1,0 +1,18 @@
+{
+  "OmniBit.RGB_Program|block": "RGB編程燈",
+  "OmniBit.Music|block": "音樂播放|%index",
+  "OmniBit.Servo|block": "舵機(180)|編號 %num|角度 %value",
+  "OmniBit.Servo2|block": "舵機(270)|編號 %num|角度 %value",
+  "OmniBit.Servo3|block": "舵機(360)|編號 %num|方向 %pos|速度 %value",
+  "OmniBit.MotorRun|block": " 直流電機|%index|速度(-255~255) %speed",
+  "OmniBit.MotorRunDual|block": " 直流電機|%motor1|速度(-255~255) %speed1|%motor2|速度(-255~255) %speed2",
+  "OmniBit.MotorStopAll|block": "停止所有電機",
+  "OmniBit.StepperDegree|block": "步進電機(28BYJ-48) |%index|角度 %degree",
+  "OmniBit.StepperTurn|block": "步進電機(28BYJ-48) |%index|轉 %turn|圈數",
+  "OmniBit.StepperDual|block": "雙步進電機(角度) |B1 %degree1| B2 %degree2",
+  "OmniBit.enPos.forward|block": "正轉",
+  "OmniBit.enPos.reverse|block": "反轉",
+  "OmniBit.enPos.stop|block": "停止",
+  "OmniBit.PWMOFF|block":  "關閉PWM輸出|%index"
+  
+}

@@ -1,14 +1,17 @@
 {
     "name": "OmniBit",
-    "version": "0.0.0",
-    "description": "Extension for YahBoom SuperBit V1.0.0\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bOmni\u001b[3~\u001b[C\u001b[C\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001biBit\u001b[C\u001b[D\u001b[3~\u001b[C\u001b[C\u001b[C\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001b V1.0.0",
+    "version": "1.0.0",
+    "description": "Extension for YahBoom OmniBit V1.0.0",
     "dependencies": {
         "core": "*",
-        "radio": "*"
+        "radio": "*",
+        "neopixel": "github:kittenbot/pxt-neopixel#v0.6.12"
     },
     "files": [
         "README.md",
-        "main.ts"
+        "main.ts",
+        "_locales/zh-cn/OmniBit-strings.json",
+        "_locales/zh-tw/OmniBit-strings.json"
     ],
     "testFiles": [
         "test.ts"
