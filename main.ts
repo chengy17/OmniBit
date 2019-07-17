@@ -5,7 +5,7 @@ load dependency
 "OmniBit": "file:../pxt-OmniBit"
 */
 
-//% color="#1E90FF" weight=20 icon="\uf0d1"
+//% color="#0AB432" weight=20 icon="\uf0d1"
 namespace OmniBit {
 
     const PCA9685_ADD = 0x40
@@ -349,8 +349,6 @@ namespace OmniBit {
         
     }
     
-
-
     //% blockId=OmniBit_MotorRunDual block="Motor|%motor1|speed %speed1|%motor2|speed %speed2"
     //% weight=92
     //% blockGap=50
