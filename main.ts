@@ -127,15 +127,14 @@ namespace OmniBit {
     }
 
     export enum enPolygon {
-        
         //% blockId="Square" block="Square"
-        Square = 1,
-        //% blockId="Pentacle" block="Pentacle"
-        Pentacle,
+        Square = 1, 
         //% blockId="Parallelogram" block="Parallelogram"
         Parallelogram,
         //% blockId="Rhombus" block="Rhombus"
-        Rhombus
+        Rhombus,
+        //% blockId="Pentacle" block="Pentacle"
+        Pentacle,
     }
 
     function i2cwrite(addr: number, reg: number, value: number) {
@@ -336,7 +335,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
     //% weight=102
-    //% blockGap=10
+    //% blockGap=20
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function CarRun(direction: enCarRun, speed: number): void {
@@ -390,7 +389,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_CarDrift block="CarDrift|%direction|speed %speed"
     //% weight=101
-    //% blockGap=10
+    //% blockGap=20
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function CarDrift(direction: enCarDrift, speed: number): void {
@@ -455,10 +454,10 @@ namespace OmniBit {
 
     //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
     //% weight=100
-    //% blockGap=50
+    //% blockGap=20
     //% speed_front.min=0 speed.max=255
     //% speed_back.min=0 speed.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=2
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
         if (!initialized) {
             initPCA9685();
@@ -521,33 +520,6 @@ namespace OmniBit {
         }
 
         switch (polygon) {
-            case enPolygon.Pentacle:
-                moveRight(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
-
-                left_Back(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
-
-                right_Front(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
-
-                right_Back(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
-
-                left_Front(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
-
-                break;
             case enPolygon.Square:
                 back(speed);
                 basic.pause(1000);
@@ -611,6 +583,32 @@ namespace OmniBit {
                 carStop();
                 basic.pause(10);
                 break;
+            case enPolygon.Pentacle:
+                moveRight(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
             default:
                 break;
         }
@@ -618,7 +616,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_RGB_Program block="RGB_Program"
     //% weight=97
-    //% blockGap=10
+    //% blockGap=20
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RGB_Program(): neopixel.Strip {
         if (!yahStrip) {
@@ -629,7 +627,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Music block="Music|%index"
     //% weight=96
-    //% blockGap=10
+    //% blockGap=20
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Music(index: enMusic): void {
         switch (index) {
@@ -658,7 +656,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Servo block="Servo(180°)|num %num|value %value"
     //% weight=95
-    //% blockGap=10
+    //% blockGap=20
     //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
@@ -673,7 +671,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Servo2 block="Servo(270°)|num %num|value %value"
     //% weight=94
-    //% blockGap=10
+    //% blockGap=20
     //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=270
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
@@ -689,7 +687,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Servo3 block="Servo(360°)|num %num|pos %pos|value %value"
     //% weight=93
-    //% blockGap=10
+    //% blockGap=20
     //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=90
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
@@ -716,6 +714,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_MotorRun block="Motor|%index|speed(-255~255) %speed"
     //% weight=92
+    //% blockGap=20
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: enMotors, speed: number): void {
@@ -755,7 +754,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
-    //% blockGap=50
+    //% blockGap=20
     export function MotorStopAll(): void {
         if (!initialized) {
             initPCA9685()
