@@ -301,7 +301,7 @@ namespace OmniBit {
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
     //% weight=102
     //% blockGap=20
-    //% groups="CarControl"
+    //% group="CarControl"
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function CarRun(direction: enCarRun, speed: number): void {
@@ -353,7 +353,7 @@ namespace OmniBit {
     //% blockId=OmniBit_CarDrift block="CarDrift|%direction|speed %speed"
     //% weight=101
     //% blockGap=20
-    //% groups="CarControl"
+    //% group="CarControl"
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function CarDrift(direction: enCarDrift, speed: number): void {
@@ -396,7 +396,7 @@ namespace OmniBit {
     //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
     //% weight=100
     //% blockGap=20
-    //% groups="CarControl"
+    //% group="CarControl"
     //% speed_front.min=0 speed_front.max=255 
     //% speed_back.min=0 speed_back.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -432,7 +432,7 @@ namespace OmniBit {
     //% blockId=OmniBit_Polygon block="Polygon|%polygon|speed %speed"
     //% weight=100
     //% blockGap=20
-    //% groups="CarControl"
+    //% group="CarControl"
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Polygon(polygon: enPolygon, speed: number): void {
@@ -542,7 +542,7 @@ namespace OmniBit {
     //% blockId=OmniBit_Handle block="Handle|x %x|y %y|rotation %leftOrRight"
     //% weight=100
     //% blockGap=20
-    //% groups="CarControl"
+    //% group="CarControl"
     //% leftOrRight.min=-1 leftOrRight.max=1
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Handle(x: number, y: number, leftOrRight: number): void {
@@ -566,7 +566,7 @@ namespace OmniBit {
     //% blockId=OmniBit_RGB_Program block="RGB_Program"
     //% weight=97
     //% blockGap=20
-    //% groups="BoardFuntion"
+    //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RGB_Program(): neopixel.Strip {
         if (!yahStrip) {
@@ -578,7 +578,7 @@ namespace OmniBit {
     //% blockId=OmniBit_Music block="Music|%index"
     //% weight=96
     //% blockGap=20
-    //% groups="BoardFuntion"
+    //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Music(index: enMusic): void {
         switch (index) {
@@ -608,7 +608,7 @@ namespace OmniBit {
     //% blockId=OmniBit_Servo block="Servo(180°)|num %num|value %value"
     //% weight=95
     //% blockGap=20
-    //% groups="BoardFuntion"
+    //% group="BoardFuntion"
     //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
     export function Servo(num: enServo, value: number): void {
@@ -666,7 +666,7 @@ namespace OmniBit {
     //% blockId=OmniBit_MotorRun block="Motor|%index|speed(-255~255) %speed"
     //% weight=92
     //% blockGap=20
-    //% groups="BoardFuntion"
+    //% group="BoardFuntion"
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: enMotors, speed: number): void {
@@ -707,7 +707,7 @@ namespace OmniBit {
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
     //% blockGap=20
-    //% groups="BoardFuntion"
+    //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorStopAll(): void {
         if (!initialized) {
