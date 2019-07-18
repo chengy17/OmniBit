@@ -455,18 +455,18 @@ namespace OmniBit {
 
     //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
     //% weight=100
-    //% blockGap=10
-    //% speed_front.min=0 speed.max=150
+    //% blockGap=50
+    //% speed_front.min=0 speed.max=255
     //% speed_back.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=2
     export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
         if (!initialized) {
             initPCA9685();
         }
-        speed_front = Math.map(speed_front, 0, 150, 0, 2400);
+        speed_front = Math.map(speed_front, 0, 255, 0, 4095);
         speed_back = Math.map(speed_back, 0, 255, 0, 4095);
-        if (speed_front >= 2400) {
-            speed_front = 2400;
+        if (speed_front >= 4095) {
+            speed_front = 4095;
         } else if (speed_front < 0) {
             speed_front = 0;
         }
@@ -506,7 +506,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Polygon block="Polygon|%polygon|speed %speed"
     //% weight=100
-    //% blockGap=10
+    //% blockGap=20
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Polygon(polygon: enPolygon, speed: number): void {
