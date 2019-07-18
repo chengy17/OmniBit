@@ -30,8 +30,7 @@ namespace OmniBit {
     let initialized = false
     let yahStrip: neopixel.Strip;
 
-
-
+    
     export enum enMusic {
 
         dadadum = 0,
@@ -296,7 +295,6 @@ namespace OmniBit {
         MotorRun(enMotors.M3, speedm3);
         MotorRun(enMotors.M4, speedm4);
     }
-
 
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
     //% weight=102
