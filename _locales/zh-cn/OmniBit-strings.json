@@ -44,7 +44,7 @@
   "OmniBit.enCarRun.Right_Back|block": "向右后方",
   "OmniBit.enCarRun.CarStop|block": "停止",
 
-  "OmniBit.group.CarControl|block": "移动控制",
-  "OmniBit.group.BoardFuntion|block": "板载功能"
+  "OmniBit.CarControl|block": "移动控制",
+  "OmniBit.BoardFuntion|block": "板载功能"
   
 }
