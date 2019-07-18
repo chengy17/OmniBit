@@ -128,7 +128,7 @@ namespace OmniBit {
 
     export enum enPolygon {
         //% blockId="Square" block="Square"
-        Square = 1, 
+        Square = 1,
         //% blockId="Parallelogram" block="Parallelogram"
         Parallelogram,
         //% blockId="Rhombus" block="Rhombus"
@@ -200,123 +200,75 @@ namespace OmniBit {
 
 
     function forward(speed: number) {
-        setPwm(10, 0, speed);
-        setPwm(11, 0, 0);
-        setPwm(8, 0, speed);
-        setPwm(9, 0, 0);
 
-        setPwm(13, 0, speed);
-        setPwm(12, 0, 0);
-        setPwm(15, 0, speed);
-        setPwm(14, 0, 0);
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, speed);
     }
 
     function back(speed: number) {
-        setPwm(10, 0, 0);
-        setPwm(11, 0, speed);
-        setPwm(8, 0, 0);
-        setPwm(9, 0, speed);
 
-        setPwm(13, 0, 0);
-        setPwm(12, 0, speed);
-        setPwm(15, 0, 0);
-        setPwm(14, 0, speed);
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, -speed);
     }
 
     function moveLeft(speed: number) {
-        setPwm(10, 0, speed);
-        setPwm(11, 0, 0);
-        setPwm(8, 0, 0);
-        setPwm(9, 0, speed);
-
-        setPwm(13, 0, 0);
-        setPwm(12, 0, speed);
-        setPwm(15, 0, speed);
-        setPwm(14, 0, 0);
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, -speed);
     }
 
     function moveRight(speed: number) {
-        setPwm(10, 0, 0);
-        setPwm(11, 0, speed);
-        setPwm(8, 0, speed);
-        setPwm(9, 0, 0);
-
-        setPwm(13, 0, speed);
-        setPwm(12, 0, 0);
-        setPwm(15, 0, 0);
-        setPwm(14, 0, speed);
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, speed);
     }
 
     function left_Front(speed: number) {
-        setPwm(10, 0, speed);
-        setPwm(11, 0, 0);
-        setPwm(8, 0, 0);
-        setPwm(9, 0, 0);
-
-        setPwm(13, 0, 0);
-        setPwm(12, 0, 0);
-        setPwm(15, 0, speed);
-        setPwm(14, 0, 0);
+        MotorRun(enMotors.M1, 0);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, 0);
     }
 
     function left_Back(speed: number) {
-        setPwm(10, 0, 0);
-        setPwm(11, 0, 0);
-        setPwm(8, 0, 0);
-        setPwm(9, 0, speed);
-
-        setPwm(13, 0, 0);
-        setPwm(12, 0, speed);
-        setPwm(15, 0, 0);
-        setPwm(14, 0, 0);
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, 0);
+        MotorRun(enMotors.M3, 0);
+        MotorRun(enMotors.M4, -speed);
     }
 
     function right_Front(speed: number) {
-        setPwm(10, 0, 0);
-        setPwm(11, 0, 0);
-        setPwm(8, 0, speed);
-        setPwm(9, 0, 0);
-
-        setPwm(13, 0, speed);
-        setPwm(12, 0, 0);
-        setPwm(15, 0, 0);
-        setPwm(14, 0, 0);
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, 0);
+        MotorRun(enMotors.M3, 0);
+        MotorRun(enMotors.M4, speed);
     }
 
     function right_Back(speed: number) {
-        setPwm(10, 0, speed);
-        setPwm(11, 0, 0);
-        setPwm(8, 0, 0);
-        setPwm(9, 0, 0);
-
-        setPwm(13, 0, 0);
-        setPwm(12, 0, 0);
-        setPwm(15, 0, 0);
-        setPwm(14, 0, speed);
+        MotorRun(enMotors.M1, 0);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, 0);
     }
 
     function spin_Left(speed: number) {
-        setPwm(10, 0, speed);
-        setPwm(11, 0, 0);
-        setPwm(8, 0, speed);
-        setPwm(9, 0, 0);
-
-        setPwm(13, 0, 0);
-        setPwm(12, 0, speed);
-        setPwm(15, 0, 0);
-        setPwm(14, 0, speed);
+        MotorRun(enMotors.M1, -speed);
+        MotorRun(enMotors.M2, -speed);
+        MotorRun(enMotors.M3, speed);
+        MotorRun(enMotors.M4, speed);
     }
 
     function spin_Right(speed: number) {
-        setPwm(10, 0, 0);
-        setPwm(11, 0, speed);
-        setPwm(8, 0, 0);
-        setPwm(9, 0, speed);
-
-        setPwm(13, 0, speed);
-        setPwm(12, 0, 0);
-        setPwm(15, 0, speed);
-        setPwm(14, 0, 0);
+        MotorRun(enMotors.M1, speed);
+        MotorRun(enMotors.M2, speed);
+        MotorRun(enMotors.M3, -speed);
+        MotorRun(enMotors.M4, -speed);
     }
 
     function carStop() {
@@ -330,7 +282,6 @@ namespace OmniBit {
         setPwm(15, 0, 0);
         setPwm(14, 0, 0);
     }
-
 
 
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
@@ -404,48 +355,28 @@ namespace OmniBit {
         }
         switch (direction) {
             case enCarDrift.Rear_To_Left:
-                setPwm(10, 0, 0);
-                setPwm(11, 0, 0);
-                setPwm(8, 0, 0);
-                setPwm(9, 0, speed);
-
-                setPwm(13, 0, 0);
-                setPwm(12, 0, 0);
-                setPwm(15, 0, speed);
-                setPwm(14, 0, 0);
+                MotorRun(enMotors.M1, 0);
+                MotorRun(enMotors.M2, speed);
+                MotorRun(enMotors.M3, 0);
+                MotorRun(enMotors.M4, -speed);
                 break;
             case enCarDrift.Rear_To_Right:
-                setPwm(10, 0, 0);
-                setPwm(11, 0, 0);
-                setPwm(8, 0, speed);
-                setPwm(9, 0, 0);
-
-                setPwm(13, 0, 0);
-                setPwm(12, 0, 0);
-                setPwm(15, 0, 0);
-                setPwm(14, 0, speed);
+                MotorRun(enMotors.M1, 0);
+                MotorRun(enMotors.M2, -speed);
+                MotorRun(enMotors.M3, 0);
+                MotorRun(enMotors.M4, speed);
                 break;
             case enCarDrift.Head_To_Left:
-                setPwm(10, 0, speed);
-                setPwm(11, 0, 0);
-                setPwm(8, 0, 0);
-                setPwm(9, 0, 0);
-
-                setPwm(13, 0, 0);
-                setPwm(12, 0, speed);
-                setPwm(15, 0, 0);
-                setPwm(14, 0, 0);
+                MotorRun(enMotors.M1, -speed);
+                MotorRun(enMotors.M2, 0);
+                MotorRun(enMotors.M3, speed);
+                MotorRun(enMotors.M4, 0);
                 break;
             case enCarDrift.Head_To_Right:
-                setPwm(10, 0, 0);
-                setPwm(11, 0, speed);
-                setPwm(8, 0, 0);
-                setPwm(9, 0, 0);
-
-                setPwm(13, 0, speed);
-                setPwm(12, 0, 0);
-                setPwm(15, 0, 0);
-                setPwm(14, 0, 0);
+                MotorRun(enMotors.M1, speed);
+                MotorRun(enMotors.M2, 0);
+                MotorRun(enMotors.M3, -speed);
+                MotorRun(enMotors.M4, 0);
                 break;
             default:
                 break;
@@ -477,26 +408,16 @@ namespace OmniBit {
 
         switch (direction) {
             case enWideAngleDrift.Left:
-                setPwm(10, 0, speed_front);
-                setPwm(11, 0, 0);
-                setPwm(8, 0, 0);
-                setPwm(9, 0, speed_back);
-
-                setPwm(13, 0, 0);
-                setPwm(12, 0, speed_front);
-                setPwm(15, 0, speed_back);
-                setPwm(14, 0, 0);
+                MotorRun(enMotors.M1, -speed_front);
+                MotorRun(enMotors.M2, speed_back);
+                MotorRun(enMotors.M3, speed_front);
+                MotorRun(enMotors.M4, -speed_back);
                 break;
             case enWideAngleDrift.Right:
-                setPwm(10, 0, 0);
-                setPwm(11, 0, speed_front);
-                setPwm(8, 0, speed_back);
-                setPwm(9, 0, 0);
-
-                setPwm(13, 0, speed_front);
-                setPwm(12, 0, 0);
-                setPwm(15, 0, 0);
-                setPwm(14, 0, speed_back);
+                MotorRun(enMotors.M1, speed_front);
+                MotorRun(enMotors.M2, -speed_back);
+                MotorRun(enMotors.M3, -speed_front);
+                MotorRun(enMotors.M4, speed_back);
                 break;
             default:
                 break;
@@ -512,7 +433,7 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685();
         }
-        speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4096
+        speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4095
         if (speed >= 4095) {
             speed = 4095;
         } else if (speed < 0) {
@@ -584,6 +505,7 @@ namespace OmniBit {
                 basic.pause(10);
                 break;
             case enPolygon.Pentacle:
+
                 moveRight(speed);
                 basic.pause(1000);
                 carStop();
@@ -721,11 +643,11 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685()
         }
-        speed = speed * 16; // map 255 to 4096
-        if (speed >= 4096) {
+        speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4095
+        if (speed >= 4095) {
             speed = 4095
         }
-        if (speed <= -4096) {
+        if (speed <= -4095) {
             speed = -4095
         }
 
