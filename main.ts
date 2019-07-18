@@ -609,7 +609,7 @@ namespace OmniBit {
     //% blockId=OmniBit_Servo block="Servo(180°)|num %num|value %value"
     //% weight=95
     //% blockGap=10
-    //% group="BoardFuntion"
+    //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
     export function Servo(num: enServo, value: number): void {
