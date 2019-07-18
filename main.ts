@@ -31,6 +31,7 @@ namespace OmniBit {
     let yahStrip: neopixel.Strip;
 
 
+
     export enum enMusic {
 
         dadadum = 0,
@@ -270,6 +271,9 @@ namespace OmniBit {
     }
 
     function carStop() {
+        if (!initialized) {
+            initPCA9685();
+        }
         setPwm(8, 0, 0);
         setPwm(9, 0, 0);
         setPwm(10, 0, 0);
@@ -281,6 +285,18 @@ namespace OmniBit {
         setPwm(15, 0, 0);
     }
 
+    function MecanumRun(xSpeed: number, ySpeed: number, aSpeed: number) {
+        let speedm1 = ySpeed + xSpeed - aSpeed;
+        let speedm2 = ySpeed - xSpeed - aSpeed;
+        let speedm3 = ySpeed - xSpeed + aSpeed;
+        let speedm4 = ySpeed + xSpeed + aSpeed;
+       
+        MotorRun(enMotors.M1, speedm1);
+        MotorRun(enMotors.M2, speedm2);
+        MotorRun(enMotors.M3, speedm3);
+        MotorRun(enMotors.M4, speedm4);
+    }
+    
 
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
     //% weight=102
@@ -289,7 +305,7 @@ namespace OmniBit {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function CarRun(direction: enCarRun, speed: number): void {
         if (!initialized) {
-            initPCA9685()
+            initPCA9685();
         }
         if (speed <= 0) {
             speed = 0;
@@ -517,6 +533,26 @@ namespace OmniBit {
             default:
                 break;
         }
+    }
+
+    //% blockId=OmniBit_Handle block="Handle|x %x|y %y|rotation %leftOrRight"
+    //% weight=100
+    //% blockGap=20
+    //% a.min=-1 a.max=1
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Handle(x: number, y: number, leftOrRight: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (Math.abs(x) <= 10 && Math.abs(y) <= 10) {
+            x = 0;
+            y = 0;
+        }        
+        let linearSpeed = 255;
+        let angularSpeed = 255;
+        x = x / 512;
+        y = y / 512;
+        MecanumRun(x * linearSpeed, y * linearSpeed, leftOrRight * angularSpeed);
     }
 
     //% blockId=OmniBit_RGB_Program block="RGB_Program"

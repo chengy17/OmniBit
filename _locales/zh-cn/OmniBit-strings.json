@@ -4,6 +4,7 @@
   "OmniBit.CarDrift|block":"原地漂移|%direction|速度(0~255) %speed",
   "OmniBit.WideAngleDrift|block":"大角度漂移|%direction|前电机速度(0~255) %speed_front|后电机速度(0~255) %speed_back",
   "OmniBit.Polygon|block":"图形|%polygon|速度(0~255) %speed",
+  "OmniBit.Handle|block":"模拟手柄遥控|X值(-512~512) %x|Y值(-512~512) %y|旋转方向 %leftOrRight",
 
   "OmniBit.RGB_Program|block": "RGB编程灯",
   "OmniBit.Music|block": "音乐播放|%index",
