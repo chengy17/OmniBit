@@ -608,7 +608,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Servo block="Servo(180°)|num %num|value %value"
     //% weight=95
-    //% blockGap=10
+    //% blockGap=20
     //% advanced=true
     //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
