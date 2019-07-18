@@ -5,7 +5,7 @@ load dependency
 "OmniBit": "file:../pxt-OmniBit"
 */
 
-//% color="#62b900" weight=20 icon="\uf0d1"
+//% color="#62b900" weight=20 icon="\uf1b9"
 namespace OmniBit {
 
     const PCA9685_ADD = 0x40
@@ -538,7 +538,7 @@ namespace OmniBit {
     //% blockId=OmniBit_Handle block="Handle|x %x|y %y|rotation %leftOrRight"
     //% weight=100
     //% blockGap=20
-    //% a.min=-1 a.max=1
+    //% leftOrRight.min=-1 leftOrRight.max=1
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Handle(x: number, y: number, leftOrRight: number): void {
         if (!initialized) {
