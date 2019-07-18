@@ -300,7 +300,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
     //% weight=102
-    //% blockGap=20
+    //% blockGap=10
     //% group="CarControl"
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -352,7 +352,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_CarDrift block="CarDrift|%direction|speed %speed"
     //% weight=101
-    //% blockGap=20
+    //% blockGap=10
     //% group="CarControl"
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -395,7 +395,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
     //% weight=100
-    //% blockGap=20
+    //% blockGap=10
     //% group="CarControl"
     //% speed_front.min=0 speed_front.max=255 
     //% speed_back.min=0 speed_back.max=255
@@ -431,7 +431,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Polygon block="Polygon|%polygon|speed %speed"
     //% weight=100
-    //% blockGap=20
+    //% blockGap=10
     //% group="CarControl"
     //% speed.min=0 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -541,7 +541,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Handle block="Handle|x %x|y %y|rotation %leftOrRight"
     //% weight=100
-    //% blockGap=20
+    //% blockGap=10
     //% group="CarControl"
     //% leftOrRight.min=-1 leftOrRight.max=1
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -565,7 +565,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_RGB_Program block="RGB_Program"
     //% weight=97
-    //% blockGap=20
+    //% blockGap=10
     //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RGB_Program(): neopixel.Strip {
@@ -577,7 +577,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Music block="Music|%index"
     //% weight=96
-    //% blockGap=20
+    //% blockGap=10
     //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Music(index: enMusic): void {
@@ -607,7 +607,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_Servo block="Servo(180°)|num %num|value %value"
     //% weight=95
-    //% blockGap=20
+    //% blockGap=10
     //% group="BoardFuntion"
     //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
@@ -665,7 +665,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_MotorRun block="Motor|%index|speed(-255~255) %speed"
     //% weight=92
-    //% blockGap=20
+    //% blockGap=10
     //% group="BoardFuntion"
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -706,7 +706,7 @@ namespace OmniBit {
 
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
-    //% blockGap=20
+    //% blockGap=10
     //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorStopAll(): void {
