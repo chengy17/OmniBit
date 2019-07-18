@@ -455,7 +455,8 @@ namespace OmniBit {
     //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
     //% weight=100
     //% blockGap=20
-    //% speed_front.min=0 speed.max=255 speed_back.min=0 speed.max=255
+    //% speed_front.min=0 speed_front.max=255 
+    //% speed_back.min=0 speed_back.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
         if (!initialized) {
