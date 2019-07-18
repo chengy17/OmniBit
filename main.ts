@@ -200,7 +200,6 @@ namespace OmniBit {
 
 
     function forward(speed: number) {
-
         MotorRun(enMotors.M1, speed);
         MotorRun(enMotors.M2, speed);
         MotorRun(enMotors.M3, speed);
@@ -208,7 +207,6 @@ namespace OmniBit {
     }
 
     function back(speed: number) {
-
         MotorRun(enMotors.M1, -speed);
         MotorRun(enMotors.M2, -speed);
         MotorRun(enMotors.M3, -speed);
@@ -272,15 +270,15 @@ namespace OmniBit {
     }
 
     function carStop() {
-        setPwm(10, 0, 0);
-        setPwm(11, 0, 0);
         setPwm(8, 0, 0);
         setPwm(9, 0, 0);
+        setPwm(10, 0, 0);
+        setPwm(11, 0, 0);
 
-        setPwm(13, 0, 0);
         setPwm(12, 0, 0);
-        setPwm(15, 0, 0);
+        setPwm(13, 0, 0);
         setPwm(14, 0, 0);
+        setPwm(15, 0, 0);
     }
 
 
@@ -291,12 +289,9 @@ namespace OmniBit {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function CarRun(direction: enCarRun, speed: number): void {
         if (!initialized) {
-            initPCA9685();
+            initPCA9685()
         }
-        speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4096
-        if (speed >= 4095) {
-            speed = 4095;
-        } else if (speed < 0) {
+        if (speed <= 0) {
             speed = 0;
         }
         switch (direction) {
@@ -347,10 +342,7 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685();
         }
-        speed = Math.map(speed, 0, 255, 0, 4095);
-        if (speed >= 4095) {
-            speed = 4095;
-        } else if (speed < 0) {
+        if (speed <= 0) {
             speed = 0;
         }
         switch (direction) {
@@ -393,16 +385,10 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685();
         }
-        speed_front = Math.map(speed_front, 0, 255, 0, 4095);
-        speed_back = Math.map(speed_back, 0, 255, 0, 4095);
-        if (speed_front >= 4095) {
-            speed_front = 4095;
-        } else if (speed_front < 0) {
+        if (speed_front <= 0) {
             speed_front = 0;
         }
-        if (speed_back >= 4095) {
-            speed_back = 4095;
-        } else if (speed_back < 0) {
+        if (speed_back <= 0) {
             speed_back = 0;
         }
 
@@ -433,10 +419,7 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685();
         }
-        speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4095
-        if (speed >= 4095) {
-            speed = 4095;
-        } else if (speed < 0) {
+        if (speed < 0) {
             speed = 0;
         }
 
@@ -641,35 +624,35 @@ namespace OmniBit {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: enMotors, speed: number): void {
         if (!initialized) {
-            initPCA9685()
+            initPCA9685();
         }
         speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4095
         if (speed >= 4095) {
-            speed = 4095
+            speed = 4095;
         }
         if (speed <= -4095) {
-            speed = -4095
+            speed = -4095;
         }
 
-        let a = index
-        let b = index + 1
+        let a = index;
+        let b = index + 1;
 
         if (a > 10) {
             if (speed >= 0) {
-                setPwm(a, 0, speed)
-                setPwm(b, 0, 0)
+                setPwm(a, 0, speed);
+                setPwm(b, 0, 0);
             } else {
-                setPwm(a, 0, 0)
-                setPwm(b, 0, -speed)
+                setPwm(a, 0, 0);
+                setPwm(b, 0, -speed);
             }
         }
         else {
             if (speed >= 0) {
-                setPwm(b, 0, speed)
-                setPwm(a, 0, 0)
+                setPwm(b, 0, speed);
+                setPwm(a, 0, 0);
             } else {
-                setPwm(b, 0, 0)
-                setPwm(a, 0, -speed)
+                setPwm(b, 0, 0);
+                setPwm(a, 0, -speed);
             }
         }
     }
@@ -679,7 +662,7 @@ namespace OmniBit {
     //% blockGap=20
     export function MotorStopAll(): void {
         if (!initialized) {
-            initPCA9685()
+            initPCA9685();
         }
         stopMotor(enMotors.M1);
         stopMotor(enMotors.M2);
