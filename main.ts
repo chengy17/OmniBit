@@ -290,13 +290,13 @@ namespace OmniBit {
         let speedm2 = ySpeed - xSpeed - aSpeed;
         let speedm3 = ySpeed - xSpeed + aSpeed;
         let speedm4 = ySpeed + xSpeed + aSpeed;
-       
+
         MotorRun(enMotors.M1, speedm1);
         MotorRun(enMotors.M2, speedm2);
         MotorRun(enMotors.M3, speedm3);
         MotorRun(enMotors.M4, speedm4);
     }
-    
+
 
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
     //% weight=102
@@ -350,87 +350,8 @@ namespace OmniBit {
         }
     }
 
-    //% blockId=OmniBit_CarDrift block="CarDrift|%direction|speed %speed"
-    //% weight=101
-    //% blockGap=10
-    //% group="CarControl"
-    //% speed.min=0 speed.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function CarDrift(direction: enCarDrift, speed: number): void {
-        if (!initialized) {
-            initPCA9685();
-        }
-        if (speed <= 0) {
-            speed = 0;
-        }
-        switch (direction) {
-            case enCarDrift.Rear_To_Left:
-                MotorRun(enMotors.M1, 0);
-                MotorRun(enMotors.M2, speed);
-                MotorRun(enMotors.M3, 0);
-                MotorRun(enMotors.M4, -speed);
-                break;
-            case enCarDrift.Rear_To_Right:
-                MotorRun(enMotors.M1, 0);
-                MotorRun(enMotors.M2, -speed);
-                MotorRun(enMotors.M3, 0);
-                MotorRun(enMotors.M4, speed);
-                break;
-            case enCarDrift.Head_To_Left:
-                MotorRun(enMotors.M1, -speed);
-                MotorRun(enMotors.M2, 0);
-                MotorRun(enMotors.M3, speed);
-                MotorRun(enMotors.M4, 0);
-                break;
-            case enCarDrift.Head_To_Right:
-                MotorRun(enMotors.M1, speed);
-                MotorRun(enMotors.M2, 0);
-                MotorRun(enMotors.M3, -speed);
-                MotorRun(enMotors.M4, 0);
-                break;
-            default:
-                break;
-        }
-    }
-
-    //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
-    //% weight=100
-    //% blockGap=10
-    //% group="CarControl"
-    //% speed_front.min=0 speed_front.max=255 
-    //% speed_back.min=0 speed_back.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
-        if (!initialized) {
-            initPCA9685();
-        }
-        if (speed_front <= 0) {
-            speed_front = 0;
-        }
-        if (speed_back <= 0) {
-            speed_back = 0;
-        }
-
-        switch (direction) {
-            case enWideAngleDrift.Left:
-                MotorRun(enMotors.M1, -speed_front);
-                MotorRun(enMotors.M2, speed_back);
-                MotorRun(enMotors.M3, speed_front);
-                MotorRun(enMotors.M4, -speed_back);
-                break;
-            case enWideAngleDrift.Right:
-                MotorRun(enMotors.M1, speed_front);
-                MotorRun(enMotors.M2, -speed_back);
-                MotorRun(enMotors.M3, -speed_front);
-                MotorRun(enMotors.M4, speed_back);
-                break;
-            default:
-                break;
-        }
-    }
-
     //% blockId=OmniBit_Polygon block="Polygon|%polygon|speed %speed"
-    //% weight=100
+    //% weight=101
     //% blockGap=10
     //% group="CarControl"
     //% speed.min=0 speed.max=255
@@ -539,8 +460,88 @@ namespace OmniBit {
         }
     }
 
-    //% blockId=OmniBit_Handle block="Handle|x %x|y %y|rotation %leftOrRight"
+
+    //% blockId=OmniBit_CarDrift block="CarDrift|%direction|speed %speed"
     //% weight=100
+    //% blockGap=10
+    //% group="CarControl"
+    //% speed.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function CarDrift(direction: enCarDrift, speed: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (speed <= 0) {
+            speed = 0;
+        }
+        switch (direction) {
+            case enCarDrift.Rear_To_Left:
+                MotorRun(enMotors.M1, 0);
+                MotorRun(enMotors.M2, speed);
+                MotorRun(enMotors.M3, 0);
+                MotorRun(enMotors.M4, -speed);
+                break;
+            case enCarDrift.Rear_To_Right:
+                MotorRun(enMotors.M1, 0);
+                MotorRun(enMotors.M2, -speed);
+                MotorRun(enMotors.M3, 0);
+                MotorRun(enMotors.M4, speed);
+                break;
+            case enCarDrift.Head_To_Left:
+                MotorRun(enMotors.M1, -speed);
+                MotorRun(enMotors.M2, 0);
+                MotorRun(enMotors.M3, speed);
+                MotorRun(enMotors.M4, 0);
+                break;
+            case enCarDrift.Head_To_Right:
+                MotorRun(enMotors.M1, speed);
+                MotorRun(enMotors.M2, 0);
+                MotorRun(enMotors.M3, -speed);
+                MotorRun(enMotors.M4, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    //% blockId=OmniBit_WideAngleDrift block="WideAngleDrift|%direction|speed_front %speed_front|speed_back %speed_back"
+    //% weight=99
+    //% blockGap=10
+    //% group="CarControl"
+    //% speed_front.min=0 speed_front.max=255 
+    //% speed_back.min=0 speed_back.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        if (speed_front <= 0) {
+            speed_front = 0;
+        }
+        if (speed_back <= 0) {
+            speed_back = 0;
+        }
+
+        switch (direction) {
+            case enWideAngleDrift.Left:
+                MotorRun(enMotors.M1, -speed_front);
+                MotorRun(enMotors.M2, speed_back);
+                MotorRun(enMotors.M3, speed_front);
+                MotorRun(enMotors.M4, -speed_back);
+                break;
+            case enWideAngleDrift.Right:
+                MotorRun(enMotors.M1, speed_front);
+                MotorRun(enMotors.M2, -speed_back);
+                MotorRun(enMotors.M3, -speed_front);
+                MotorRun(enMotors.M4, speed_back);
+                break;
+            default:
+                break;
+        }
+    }
+
+    //% blockId=OmniBit_Handle block="Handle|x %x|y %y|rotation %leftOrRight"
+    //% weight=98
     //% blockGap=10
     //% group="CarControl"
     //% leftOrRight.min=-1 leftOrRight.max=1
