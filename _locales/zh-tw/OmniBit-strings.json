@@ -16,6 +16,31 @@
   "OmniBit.enPos.forward|block": "正轉",
   "OmniBit.enPos.reverse|block": "反轉",
   "OmniBit.enPos.stop|block": "停止",
-  "OmniBit.PWMOFF|block":  "關閉PWM輸出|%index"
+  
+
+  "OmniBit.enCarDrift.Head_To_Left|block": "車頭向左",
+  "OmniBit.enCarDrift.Head_To_Right|block": "車頭向右",
+  "OmniBit.enCarDrift.Rear_To_Left|block": "車尾向左",
+  "OmniBit.enCarDrift.Rear_To_Right|block": "車尾向右",
+
+  "OmniBit.enWideAngleDrift.Left|block": "向左",
+  "OmniBit.enWideAngleDrift.Right|block": "向右",
+
+  "OmniBit.enPolygon.Pentacle|block": "五角星形",
+  "OmniBit.enPolygon.Square|block": "正方形",
+  "OmniBit.enPolygon.Parallelogram|block": "平行四邊形",
+  "OmniBit.enPolygon.Rhombus|block": "菱形",
+
+  "OmniBit.enCarRun.Forward|block": "前進",
+  "OmniBit.enCarRun.Back|block": "後退",
+  "OmniBit.enCarRun.MoveLeft|block": "向左平移",
+  "OmniBit.enCarRun.MoveRight|block": "向右平移",
+  "OmniBit.enCarRun.Spin_Left|block": "向左旋轉",
+  "OmniBit.enCarRun.Spin_Right|block": "向右旋轉",
+  "OmniBit.enCarRun.Left_Front|block": "向左前方",
+  "OmniBit.enCarRun.Right_Front|block": "向右前方",
+  "OmniBit.enCarRun.Left_Back|block": "向左後方",
+  "OmniBit.enCarRun.Right_Back|block": "向右後方",
+  "OmniBit.enCarRun.CarStop|block": "停止"
   
 }

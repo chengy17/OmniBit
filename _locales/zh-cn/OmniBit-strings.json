@@ -17,6 +17,19 @@
   "OmniBit.enPos.reverse|block": "反转",
   "OmniBit.enPos.stop|block": "停止",
 
+  "OmniBit.enCarDrift.Head_To_Left|block": "车头向左",
+  "OmniBit.enCarDrift.Head_To_Right|block": "车头向右",
+  "OmniBit.enCarDrift.Rear_To_Left|block": "车尾向左",
+  "OmniBit.enCarDrift.Rear_To_Right|block": "车尾向右",
+
+  "OmniBit.enWideAngleDrift.Left|block": "向左",
+  "OmniBit.enWideAngleDrift.Right|block": "向右",
+
+  "OmniBit.enPolygon.Pentacle|block": "五角星形",
+  "OmniBit.enPolygon.Square|block": "正方形",
+  "OmniBit.enPolygon.Parallelogram|block": "平行四边形",
+  "OmniBit.enPolygon.Rhombus|block": "菱形",
+
   "OmniBit.enCarRun.Forward|block": "前进",
   "OmniBit.enCarRun.Back|block": "后退",
   "OmniBit.enCarRun.MoveLeft|block": "向左平移",

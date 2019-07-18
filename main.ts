@@ -27,18 +27,6 @@ namespace OmniBit {
 
     const PRESCALE = 0xFE
 
-    const STP_CHA_L = 2047
-    const STP_CHA_H = 4095
-
-    const STP_CHB_L = 1
-    const STP_CHB_H = 2047
-
-    const STP_CHC_L = 1023
-    const STP_CHC_H = 3071
-
-    const STP_CHD_L = 3071
-    const STP_CHD_H = 1023
-
     let initialized = false
     let yahStrip: neopixel.Strip;
 
@@ -68,12 +56,6 @@ namespace OmniBit {
         power_down
     }
 
-
-
-    export enum enSteppers {
-        B1 = 0x1,
-        B2 = 0x2
-    }
     export enum enPos {
         //% blockId="forward" block="forward"
         forward = 1,
@@ -83,25 +65,7 @@ namespace OmniBit {
         stop = 3
     }
 
-    export enum enTurns {
-        //% blockId="T1B4" block="1/4"
-        T1B4 = 90,
-        //% blockId="T1B2" block="1/2"
-        T1B2 = 180,
-        //% blockId="T1B0" block="1"
-        T1B0 = 360,
-        //% blockId="T2B0" block="2"
-        T2B0 = 720,
-        //% blockId="T3B0" block="3"
-        T3B0 = 1080,
-        //% blockId="T4B0" block="4"
-        T4B0 = 1440,
-        //% blockId="T5B0" block="5"
-        T5B0 = 1800
-    }
-
     export enum enServo {
-
         S1 = 0,
         S2,
         S3,
@@ -111,6 +75,7 @@ namespace OmniBit {
         S7,
         S8
     }
+
     export enum enMotors {
         M1 = 8,
         M2 = 10,
@@ -120,7 +85,7 @@ namespace OmniBit {
 
     export enum enCarRun {
         //% blockId="Forward" block="Forward"
-        Forward = 10,
+        Forward = 1,
         //% blockId="Back" block="Back"
         Back,
         //% blockId="MoveLeft" block="MoveLeft"
@@ -144,16 +109,33 @@ namespace OmniBit {
     }
 
     export enum enCarDrift {
-        Back_Left = 20,
-        Back_Right,
-        Front_Left,
-        Front_Right,
-
+        //% blockId="Head_To_Left" block="Head_To_Left"
+        Head_To_Left = 1,
+        //% blockId="Head_To_Right" block="Head_To_Right"
+        Head_To_Right,
+        //% blockId="Rear_To_Left" block="Rear_To_Left"
+        Rear_To_Left,
+        //% blockId="Rear_To_Right" block="Rear_To_Right"
+        Rear_To_Right
     }
 
     export enum enWideAngleDrift {
+        //% blockId="Left" block="Left"
         Left,
+        //% blockId="Right" block="Right"
         Right
+    }
+
+    export enum enPolygon {
+        
+        //% blockId="Square" block="Square"
+        Square = 1,
+        //% blockId="Pentacle" block="Pentacle"
+        Pentacle,
+        //% blockId="Parallelogram" block="Parallelogram"
+        Parallelogram,
+        //% blockId="Rhombus" block="Rhombus"
+        Rhombus
     }
 
     function i2cwrite(addr: number, reg: number, value: number) {
@@ -338,6 +320,18 @@ namespace OmniBit {
         setPwm(14, 0, 0);
     }
 
+    function carStop() {
+        setPwm(10, 0, 0);
+        setPwm(11, 0, 0);
+        setPwm(8, 0, 0);
+        setPwm(9, 0, 0);
+
+        setPwm(13, 0, 0);
+        setPwm(12, 0, 0);
+        setPwm(15, 0, 0);
+        setPwm(14, 0, 0);
+    }
+
 
 
     //% blockId=OmniBit_CarRun block="CarRun|%direction|speed %speed"
@@ -350,7 +344,7 @@ namespace OmniBit {
             initPCA9685();
         }
         speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4096
-        if (speed >= 4096) {
+        if (speed >= 4095) {
             speed = 4095;
         } else if (speed < 0) {
             speed = 0;
@@ -387,7 +381,7 @@ namespace OmniBit {
                 right_Back(speed);
                 break;
             case enCarRun.CarStop:
-                MotorStopAll();
+                carStop();
                 break;
             default:
                 break;
@@ -410,7 +404,7 @@ namespace OmniBit {
             speed = 0;
         }
         switch (direction) {
-            case enCarDrift.Back_Left:
+            case enCarDrift.Rear_To_Left:
                 setPwm(10, 0, 0);
                 setPwm(11, 0, 0);
                 setPwm(8, 0, 0);
@@ -421,7 +415,7 @@ namespace OmniBit {
                 setPwm(15, 0, speed);
                 setPwm(14, 0, 0);
                 break;
-            case enCarDrift.Back_Right:
+            case enCarDrift.Rear_To_Right:
                 setPwm(10, 0, 0);
                 setPwm(11, 0, 0);
                 setPwm(8, 0, speed);
@@ -432,7 +426,7 @@ namespace OmniBit {
                 setPwm(15, 0, 0);
                 setPwm(14, 0, speed);
                 break;
-            case enCarDrift.Front_Left:
+            case enCarDrift.Head_To_Left:
                 setPwm(10, 0, speed);
                 setPwm(11, 0, 0);
                 setPwm(8, 0, 0);
@@ -443,7 +437,7 @@ namespace OmniBit {
                 setPwm(15, 0, 0);
                 setPwm(14, 0, 0);
                 break;
-            case enCarDrift.Front_Right:
+            case enCarDrift.Head_To_Right:
                 setPwm(10, 0, 0);
                 setPwm(11, 0, speed);
                 setPwm(8, 0, 0);
@@ -464,7 +458,7 @@ namespace OmniBit {
     //% blockGap=10
     //% speed_front.min=0 speed.max=150
     //% speed_back.min=0 speed.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=2
     export function WideAngleDrift(direction: enWideAngleDrift, speed_front: number, speed_back: number): void {
         if (!initialized) {
             initPCA9685();
@@ -508,7 +502,118 @@ namespace OmniBit {
             default:
                 break;
         }
+    }
 
+    //% blockId=OmniBit_Polygon block="Polygon|%polygon|speed %speed"
+    //% weight=100
+    //% blockGap=10
+    //% speed.min=0 speed.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Polygon(polygon: enPolygon, speed: number): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        speed = Math.map(speed, 0, 255, 0, 4095); // map 255 to 4096
+        if (speed >= 4095) {
+            speed = 4095;
+        } else if (speed < 0) {
+            speed = 0;
+        }
+
+        switch (polygon) {
+            case enPolygon.Pentacle:
+                moveRight(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                break;
+            case enPolygon.Square:
+                back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveRight(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                forward(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveLeft(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
+            case enPolygon.Parallelogram:
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveRight(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveLeft(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
+            case enPolygon.Rhombus:
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                left_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
+            default:
+                break;
+        }
     }
 
     //% blockId=OmniBit_RGB_Program block="RGB_Program"
@@ -647,7 +752,6 @@ namespace OmniBit {
             }
         }
     }
-
 
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
