@@ -1,5 +1,5 @@
 {
-  "OmniBit.CarRun|block":"驅動小車|%direction|速度(0~255) %speed",
+  "OmniBit.CarRun|block":"全向小車|%direction|速度(0~255) %speed",
   "OmniBit.CarDrift|block":"原地漂移|%direction|速度(0~255) %speed",
   "OmniBit.WideAngleDrift|block":"大角度漂移|%direction|前電機速度(0~255) %speed_front|後電機速度(0~255) %speed_back",
   "OmniBit.Polygon|block":"圖形|%polygon|速度(0~255) %speed",
