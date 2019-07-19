@@ -734,6 +734,9 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685();
         }
+        if (!yahStrip) {
+            yahStrip = neopixel.create(DigitalPin.P12, 4, NeoPixelMode.RGB);
+        }
         yahStrip.clear();
         yahStrip.show();
         carStop();
