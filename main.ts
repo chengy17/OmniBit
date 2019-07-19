@@ -430,7 +430,7 @@ namespace OmniBit {
                 break;
             case enPolygon.Flash1:
                 right_Front(speed);
-                basic.pause(1000);
+                basic.pause(1500);
                 carStop();
                 basic.pause(10);
 
@@ -440,13 +440,13 @@ namespace OmniBit {
                 basic.pause(10);
 
                 right_Front(speed);
-                basic.pause(1000);
+                basic.pause(1500);
                 carStop();
                 basic.pause(10);
                 break;
             case enPolygon.Flash2:
                 left_Back(speed);
-                basic.pause(1000);
+                basic.pause(1500);
                 carStop();
                 basic.pause(10);
 
@@ -456,7 +456,7 @@ namespace OmniBit {
                 basic.pause(10);
 
                 left_Back(speed);
-                basic.pause(1000);
+                basic.pause(1500);
                 carStop();
                 basic.pause(10);
                 break;
