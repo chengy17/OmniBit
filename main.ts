@@ -133,8 +133,10 @@ namespace OmniBit {
         Parallelogram,
         //% blockId="Rhombus" block="Rhombus"
         Rhombus,
-        //% blockId="Flash" block="Flash"
-        Flash,
+        //% blockId="Flash1" block="Flash1"
+        Flash1,
+        //% blockId="Flash2" block="Flash2"
+        Flash2,
     }
 
     function i2cwrite(addr: number, reg: number, value: number) {
@@ -426,7 +428,23 @@ namespace OmniBit {
                 carStop();
                 basic.pause(10);
                 break;
-            case enPolygon.Flash:
+            case enPolygon.Flash1:
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                moveLeft(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+
+                right_Front(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
+                break;
+            case enPolygon.Flash2:
                 left_Back(speed);
                 basic.pause(1000);
                 carStop();
@@ -440,7 +458,7 @@ namespace OmniBit {
                 left_Back(speed);
                 basic.pause(1000);
                 carStop();
-                basic.pause(10);               
+                basic.pause(10);
                 break;
             default:
                 break;
@@ -707,7 +725,7 @@ namespace OmniBit {
         stopMotor(enMotors.M4);
     }
 
-    //% blockId=OmniBit_Reset block="Reset"
+    //% blockId=OmniBit_Reset block="Reset Motor and RGB lamp"
     //% weight=90
     //% blockGap=10
     //% group="BoardFuntion"
@@ -716,10 +734,8 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685();
         }
-        RGB_Program().showColor(0);
+        RGB_Program().clear();
         RGB_Program().show();
-        for (let i = 0; i < 15; i++) {
-            setPwm(i, 0, 0);
-        }
+        carStop();
     }
 }
