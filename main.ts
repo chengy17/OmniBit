@@ -731,14 +731,11 @@ namespace OmniBit {
     //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Reset(): void {
-        if (!initialized) {
-            initPCA9685();
-        }
+        carStop();
         if (!yahStrip) {
             yahStrip = neopixel.create(DigitalPin.P12, 4, NeoPixelMode.RGB);
         }
         yahStrip.clear();
         yahStrip.show();
-        carStop();
     }
 }
