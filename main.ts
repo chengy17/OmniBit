@@ -713,7 +713,7 @@ namespace OmniBit {
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
     //% blockGap=10
-    //% advanced=true
+    //% group="BoardFuntion"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorStopAll(): void {
         if (!initialized) {
@@ -725,17 +725,4 @@ namespace OmniBit {
         stopMotor(enMotors.M4);
     }
 
-    //% blockId=OmniBit_Reset block="Reset Motor and RGB lamp"
-    //% weight=90
-    //% blockGap=10
-    //% group="BoardFuntion"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Reset(): void {
-        carStop();
-        if (!yahStrip) {
-            yahStrip = neopixel.create(DigitalPin.P12, 4, NeoPixelMode.RGB);
-        }
-        yahStrip.clear();
-        yahStrip.show();
-    }
 }
