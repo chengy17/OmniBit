@@ -734,8 +734,8 @@ namespace OmniBit {
         if (!initialized) {
             initPCA9685();
         }
-        RGB_Program().clear();
-        RGB_Program().show();
+        yahStrip.clear();
+        yahStrip.show();
         carStop();
     }
 }
