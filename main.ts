@@ -30,7 +30,7 @@ namespace OmniBit {
     let initialized = false
     let yahStrip: neopixel.Strip;
 
-    
+
     export enum enMusic {
 
         dadadum = 0,
@@ -133,8 +133,8 @@ namespace OmniBit {
         Parallelogram,
         //% blockId="Rhombus" block="Rhombus"
         Rhombus,
-        //% blockId="Pentacle" block="Pentacle"
-        Pentacle,
+        //% blockId="Flash" block="Flash"
+        Flash,
     }
 
     function i2cwrite(addr: number, reg: number, value: number) {
@@ -426,7 +426,11 @@ namespace OmniBit {
                 carStop();
                 basic.pause(10);
                 break;
-            case enPolygon.Pentacle:
+            case enPolygon.Flash:
+                left_Back(speed);
+                basic.pause(1000);
+                carStop();
+                basic.pause(10);
 
                 moveRight(speed);
                 basic.pause(1000);
@@ -436,22 +440,7 @@ namespace OmniBit {
                 left_Back(speed);
                 basic.pause(1000);
                 carStop();
-                basic.pause(10);
-
-                right_Front(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
-
-                right_Back(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
-
-                left_Front(speed);
-                basic.pause(1000);
-                carStop();
-                basic.pause(10);
+                basic.pause(10);               
                 break;
             default:
                 break;
@@ -559,7 +548,7 @@ namespace OmniBit {
         let angularSpeed = 255;
         x = x / 512;
         y = y / 512;
-        MecanumRun(x * linearSpeed, y * linearSpeed, leftOrRight * angularSpeed);
+        MecanumRun(x * linearSpeed, y * linearSpeed, -leftOrRight * angularSpeed);
     }
 
     //% blockId=OmniBit_RGB_Program block="RGB_Program"
@@ -706,7 +695,7 @@ namespace OmniBit {
     //% blockId=OmniBit_MotorStopAll block="Motor Stop All"
     //% weight=91
     //% blockGap=10
-    //% group="BoardFuntion"
+    //% advanced=true
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorStopAll(): void {
         if (!initialized) {
@@ -716,5 +705,21 @@ namespace OmniBit {
         stopMotor(enMotors.M2);
         stopMotor(enMotors.M3);
         stopMotor(enMotors.M4);
+    }
+
+    //% blockId=OmniBit_Reset block="Reset"
+    //% weight=90
+    //% blockGap=10
+    //% group="BoardFuntion"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Reset(): void {
+        if (!initialized) {
+            initPCA9685();
+        }
+        RGB_Program().showColor(0);
+        RGB_Program().show();
+        for (let i = 0; i < 15; i++) {
+            setPwm(i, 0, 0);
+        }
     }
 }
